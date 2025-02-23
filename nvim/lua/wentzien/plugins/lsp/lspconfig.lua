@@ -87,6 +87,14 @@ return {
 			end,
 		})
 
+		-- Ensure markdownlint attaches to Markdown files
+		if lspconfig.markdownlint then
+			lspconfig.markdownlint.setup({
+				filetypes = { "markdown" }, -- make sure the server handles markdown files
+				capabilities = capabilities,
+			})
+		end
+
 		-- special stuff for ocaml because it has switches and the lsp changes so much.
 		lspconfig.ocamllsp.setup({
 			cmd = { "ocamllsp" },

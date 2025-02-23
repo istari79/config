@@ -30,13 +30,13 @@ return {
 			local function set_theme()
 				local profile = get_iterm_profile()
 
-				if profile:match("mocha_mode") then
-					vim.cmd("colorscheme tokyonight-moon")
-					vim.o.background = "dark"
-				else
-					vim.cmd("colorscheme catppuccin-latte")
-					vim.o.background = "light"
-				end
+				-- if profile:match("mocha_mode") then
+				vim.cmd("colorscheme tokyonight-moon")
+				vim.o.background = "dark"
+				-- else
+				-- 	vim.cmd("colorscheme catppuccin-latte")
+				-- 	vim.o.background = "light"
+				-- end
 				-- print("the profile is " .. profile)
 			end
 
