@@ -78,22 +78,27 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		mason_lspconfig.setup_handlers({
-			-- default handler for installed servers
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-		})
-
-		-- Ensure markdownlint attaches to Markdown files
-		if lspconfig.markdownlint then
-			lspconfig.markdownlint.setup({
-				filetypes = { "markdown" }, -- make sure the server handles markdown files
+		for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+			lspconfig[server].setup({
 				capabilities = capabilities,
 			})
 		end
+		-- 		mason_lspconfig.setup_handlers({
+		-- 			-- default handler for installed servers
+		-- 			function(server_name)
+		-- 				lspconfig[server_name].setup({
+		-- 					capabilities = capabilities,
+		-- 				})
+		-- 			end,
+		-- 		})
+
+		-- Ensure markdownlint attaches to Markdown files
+		-- if lspconfig.markdownlint then
+		-- 	lspconfig.markdownlint.setup({
+		-- 		filetypes = { "markdown" }, -- make sure the server handles markdown files
+		-- 		capabilities = capabilities,
+		-- 	})
+		-- end
 
 		-- special stuff for ocaml because it has switches and the lsp changes so much.
 		lspconfig.ocamllsp.setup({
@@ -109,6 +114,12 @@ return {
 			),
 			--on_attach = on_attach,
 			capabilities = capabilities,
+		})
+
+		lspconfig.verible.setup({
+			-- cmd = { vim.fn.stdpath("data") .. "/mason/bin/verible-verilog-ls" },
+			filetypes = { "verilog", "systemverilog" },
+			-- root_dir = require("lspconfig").util.find_git_ancestor,
 		})
 	end,
 }

@@ -11,7 +11,7 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettier" },
 				ocaml = { "ocamlformat" },
-				python = { "isort", "black" },
+				-- python = { "isort", "black" },
 				-- rust = { "rustfmt" },
 				systemverilog = { "verible" },
 			},
