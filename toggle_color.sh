@@ -18,7 +18,9 @@ fi
 
 echo "$new_mode" > "$MODE_FILE"
 
-# tmux source-file ~/.config/tmux/tmux.conf
+tmux kill-server
+# tmux source-file "$HOME/.config/tmux/tmux.conf"
+# tmux run-shell "$HOME/.config/tmux/plugins/catppuccin/catppuccin.tmux"
 
 # # Reload tmux config and catppuccin theme in ALL sessions
 # if command -v tmux &>/dev/null; then
