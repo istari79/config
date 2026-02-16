@@ -8,7 +8,7 @@ return {
 			formatters_by_ft = {
 				-- c = { "clang-format" },
 				-- cpp = { "clang-format" },
-				lua = { "stylua" },
+				-- lua = { "stylua" },
 				markdown = { "prettier" },
 				ocaml = { "ocamlformat" },
 				-- python = { "isort", "black" },

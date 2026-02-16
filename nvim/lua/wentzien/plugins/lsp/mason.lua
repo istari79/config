@@ -47,7 +47,7 @@ return {
 				"mypy",
 				"prettier", -- prettier formatter
 				-- "rustfmt",
-				"stylua",
+				-- "stylua",
 				"verible",
 			},
 		})

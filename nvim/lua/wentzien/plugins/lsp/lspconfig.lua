@@ -7,9 +7,6 @@ return {
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
-		-- import lspconfig plugin
-		local lspconfig = require("lspconfig")
-
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
 
@@ -79,7 +76,7 @@ return {
 		end
 
 		for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
-			lspconfig[server].setup({
+			vim.lsp.config(server, {
 				capabilities = capabilities,
 			})
 		end
@@ -101,25 +98,19 @@ return {
 		-- end
 
 		-- special stuff for ocaml because it has switches and the lsp changes so much.
-		lspconfig.ocamllsp.setup({
-			cmd = { "ocamllsp" },
-			filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
-			root_dir = lspconfig.util.root_pattern(
-				"*.opam",
-				"esy.json",
-				"package.json",
-				".git",
-				"dune-project",
-				"dune-workspace"
-			),
-			--on_attach = on_attach,
-			capabilities = capabilities,
-		})
+		-- lspconfig.ocamllsp.setup({
+		-- 	cmd = { "ocamllsp" },
+		-- 	filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+		-- 	root_dir = lspconfig.util.root_pattern(
+		-- 		"*.opam",
+		-- 		"esy.json",
+		-- 		"package.json",
+		-- 		".git",
+		-- 		"dune-project",
+		-- 		"dune-workspace"
+		-- 	),
+		-- 	--on_attach = on_attach,
+		-- 	capabilities = capabilities		-- })
 
-		lspconfig.verible.setup({
-			-- cmd = { vim.fn.stdpath("data") .. "/mason/bin/verible-verilog-ls" },
-			filetypes = { "verilog", "systemverilog" },
-			-- root_dir = require("lspconfig").util.find_git_ancestor,
-		})
 	end,
 }
