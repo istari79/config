@@ -1,4 +1,4 @@
-function switch_ghostty_theme
+function choose_ghostty_theme
     set -g dynamic_theme_file "$HOME/.config/ghostty/dynamic-theme"
   
     function set_theme
