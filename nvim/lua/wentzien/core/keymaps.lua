@@ -20,3 +20,25 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+
+-- ui swapping
+vim.keymap.set("n", "<leader>tr", function()
+	local f = vim.fn.expand("~/.config/.theme_mode")
+	local theme = (vim.fn.readfile(f)[1] or "light"):gsub("%s+", "")
+
+	-- validate
+	assert(theme == "light" or theme == "dark", "Invalid theme in .theme_mode: " .. theme)
+
+	-- determine Catppuccin flavour
+	local flavour_map = { dark = "mocha", light = "latte" }
+
+	-- apply Catppuccin theme
+	require("catppuccin").setup({ flavour = flavour_map[theme] })
+	vim.cmd.colorscheme("catppuccin")
+
+	-- apply lualine theme
+	local lualine_spec = require("wentzien.plugins.lualine")
+	if type(lualine_spec.config) == "function" then
+		lualine_spec.config()
+	end
+end, { noremap = true, silent = true })

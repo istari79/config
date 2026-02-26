@@ -4,10 +4,17 @@ return {
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
-			local is_dark = vim.fn.filereadable(vim.fn.expand("~/.config/nvim/.nvim_theme_dark")) == 1
+			local theme_file = vim.fn.expand("~/.config/.theme_mode")
+			local theme = vim.fn.readfile(theme_file)[1]
+			assert(theme == "light" or theme == "dark", "Invalid theme in .theme_mode: " .. theme)
+
+			local flavour_map = {
+				dark = "mocha",
+				light = "latte",
+			}
 
 			require("catppuccin").setup({
-				flavour = is_dark and "mocha" or "latte",
+				flavour = flavour_map[theme],
 			})
 
 			vim.cmd.colorscheme("catppuccin")
