@@ -13,13 +13,5 @@ set theme_file ~/.config/.theme_mode
 if test -f $theme_file
   set mode (string trim (cat $theme_file))
 
-  switch $mode
-    case dark
-      fish_config theme choose 'lava'
-    case light
-      fish_config theme choose 'snow-day'
-    case '*'
-      echo "bad param '$mode' passed to config.fish"
-      return 1
-  end
+  choose_fish_theme $mode
 end

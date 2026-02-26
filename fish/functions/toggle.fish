@@ -5,4 +5,7 @@ function toggle
   else
     inner_toggle
   end
+  # The file is not updated quick enough, so sleep for a small period of time.
+  sleep 0.05
+  source ~/.config/fish/config.fish
 end
