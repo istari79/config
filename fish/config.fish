@@ -10,6 +10,8 @@ eval "$(/opt/homebrew/bin/brew shellenv fish)"
 set -l theme_file ~/.config/.theme_mode
 
 set -g fish_key_bindings fish_vi_key_bindings
+bind -M insert \cf forward-char
+bind -M insert \cr history-pager
 
 if test -f $theme_file
   set mode (string trim (cat $theme_file))
