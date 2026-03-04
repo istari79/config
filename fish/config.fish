@@ -13,6 +13,12 @@ set -g fish_key_bindings fish_vi_key_bindings
 bind -M insert \cf forward-char
 bind -M insert \cr history-pager
 
+alias l="eza"
+alias ll="eza --long"
+alias lla="eza --long --all"
+alias llt="eza --long --tree --level=3"
+alias lt="eza --tree --level=3"
+
 if test -f $theme_file
   set mode (string trim (cat $theme_file))
 
