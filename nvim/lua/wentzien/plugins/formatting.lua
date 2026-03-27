@@ -10,7 +10,7 @@ return {
 				-- cpp = { "clang-format" },
 				-- lua = { "stylua" },
 				markdown = { "prettier" },
-				ocaml = { "ocamlformat" },
+				-- ocaml = { "ocamlformat" },
 				-- python = { "isort", "black" },
 				-- rust = { "rustfmt" },
 				systemverilog = { "verible" },
